@@ -237,14 +237,14 @@ class CRM_Extendedreport_Form_Report_Contribute_BookkeepingExtended extends CRM_
   public function whereClause(&$field, $op, $value, $min, $max) {
     if ($field['dbAlias'] == "{$this->_aliases['credit_civicrm_financial_account']}.accounting_code") {
       $field['dbAlias'] = "CASE
-              WHEN financial_trxn_civireport.from_financial_account_id IS NOT NULL
+              WHEN financial_trxn.from_financial_account_id IS NOT NULL
               THEN  {$this->_aliases['credit_civicrm_financial_account']}.accounting_code
               ELSE  credit_financial_item_financial_account.accounting_code
               END";
     }
     if ($field['dbAlias'] == 'credit_financial_account.name') {
       $field['dbAlias'] =  "CASE
-              WHEN financial_trxn_civireport.from_financial_account_id IS NOT NULL
+              WHEN financial_trxn.from_financial_account_id IS NOT NULL
               THEN {$this->_aliases['credit_civicrm_financial_account']}.id
               ELSE  credit_financial_item_financial_account.id
               END";
